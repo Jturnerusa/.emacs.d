@@ -1,7 +1,3 @@
-(add-to-list 'load-path (file-name-concat user-emacs-directory "config"))
-
-(require 'config)
-
 (setq auth-source-save-behavior nil
       auto-save-default nil
       change-major-mode-with-file-name nil
@@ -21,6 +17,9 @@
 
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(load (file-name-concat user-emacs-directory "load-config"))
+(load (file-name-concat user-emacs-directory "load-local-lisp"))
 
 (cua-mode 1)
 (recentf-mode 1)
