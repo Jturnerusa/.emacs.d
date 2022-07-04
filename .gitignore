@@ -1,6 +1,9 @@
 /*
 !/.gitignore
 !/init.el
+!/load-config.el
+!/load-local-lisp.el
 !/custom.el
 !/themes
 !/config
+!/lisp
