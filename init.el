@@ -1,3 +1,6 @@
+(when (locate-library "site-gentoo")
+  (require 'site-gentoo))
+
 (setq auth-source-save-behavior nil
       auto-save-default nil
       change-major-mode-with-file-name nil
