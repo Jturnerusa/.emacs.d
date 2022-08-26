@@ -22,7 +22,7 @@
   (load custom-file))
 
 (load (file-name-concat user-emacs-directory "load-config"))
-(load (file-name-concat user-emacs-directory "load-local-lisp"))
+(load (file-name-concat user-emacs-directory "load-lisp"))
 
 (cua-mode 1)
 (recentf-mode 1)

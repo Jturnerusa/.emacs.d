@@ -2,7 +2,7 @@
 !/.gitignore
 !/init.el
 !/load-config.el
-!/load-local-lisp.el
+!/load-lisp.el
 !/custom.el
 !/themes
 !/config
