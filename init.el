@@ -21,9 +21,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(load (file-name-concat user-emacs-directory "load-config"))
-(load (file-name-concat user-emacs-directory "load-lisp"))
-
 (cua-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
