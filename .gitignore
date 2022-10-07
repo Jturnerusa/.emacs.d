@@ -5,5 +5,5 @@
 !/load-lisp.el
 !/custom.el
 !/themes
-!/config
+!/init
 !/lisp
