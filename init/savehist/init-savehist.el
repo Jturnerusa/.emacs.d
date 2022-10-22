@@ -8,4 +8,6 @@
 (unless (file-exists-p savehist-file)
   (make-empty-file savehist-file))
 
+(savehist-mode 1)
+
 (provide 'init-savehist)

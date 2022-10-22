@@ -21,18 +21,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(cua-mode 1)
-(recentf-mode 1)
-(savehist-mode 1)
-(save-place-mode 1)
-(show-paren-mode 1)
-(pixel-scroll-mode 1)
-(pixel-scroll-precision-mode 1)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(tool-bar-mode 0)
-(tooltip-mode 0)
-
 (let ((config-directory (file-name-concat user-emacs-directory "init")))
   (add-to-list 'load-path (file-name-concat config-directory "company"))
   (add-to-list 'load-path (file-name-concat config-directory "conf-mode"))
@@ -96,3 +84,13 @@
   (add-to-list 'load-path (file-name-concat local-lisp-directory "man-completion")))
 
 (require 'man-completion)
+
+(cua-mode 1)
+(save-place-mode 1)
+(show-paren-mode 1)
+(pixel-scroll-mode 1)
+(pixel-scroll-precision-mode 1)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(tool-bar-mode 0)
+(tooltip-mode 0)
