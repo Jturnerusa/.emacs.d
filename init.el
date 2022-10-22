@@ -93,6 +93,6 @@
   (require 'init-native-comp))
 
 (let ((local-lisp-directory (file-name-concat user-emacs-directory "lisp")))
-  (add-to-list 'load-path (file-name-concat local-lisp-directory "man-wrapper")))
+  (add-to-list 'load-path (file-name-concat local-lisp-directory "man-completion")))
 
-(require 'man-wrapper)
+(require 'man-completion)
