@@ -6,7 +6,7 @@
 (global-unset-key (kbd "<C-right>"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
-(global-set-key   (kbd "C-x k")     'kill-buffer)
+(global-set-key   (kbd "C-x k")     'kill-this-buffer)
 (global-set-key   (kbd "C-x C-b")   'ibuffer)
 
 (provide 'init-keys)
