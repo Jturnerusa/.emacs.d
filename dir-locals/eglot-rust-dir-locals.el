@@ -3,4 +3,5 @@
                                                                     (:command "clippy")))))
                (rust-format-on-save . t)
                (rust-format-goto-problem . t)
-               (rust-rustfmt-switches . ("--edition" "2021")))))
+               (rust-rustfmt-switches . ("--edition" "2021"))))
+ (nil . ((rust-cargo-bin . "TMPDIR=~/tmp cargo"))))
