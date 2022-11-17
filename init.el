@@ -1,5 +1,4 @@
-(when (locate-library "site-gentoo")
-  (require 'site-gentoo))
+(require 'seq)
 
 (setq auth-source-save-behavior nil
       auto-save-default nil
@@ -14,37 +13,24 @@
 (setq-default display-fill-column-indicator-column 120
               indent-tabs-mode nil)
 
-(when (file-exists-p (file-name-concat custom-theme-directory "custom-wombat-theme.el"))
-  (load-theme 'custom-wombat t))
+(let* ((init-modules-wildcard
+        (file-name-concat user-emacs-directory "init" "*"))
+       (lisp-modules-wildcard
+        (file-name-concat user-emacs-directory "lisp" "*"))
+       (init-modules-files
+        (file-expand-wildcards init-modules-wildcard t))
+       (lisp-modules-files
+        (file-expand-wildcards lisp-modules-wildcard t))
+       (files
+        (append init-modules-files lisp-modules-files))
+       (directories
+        (seq-filter 'file-directory-p files)))
+  (mapc (lambda (directory)
+          (add-to-list 'load-path directory))
+        directories))
 
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-(let ((config-directory (file-name-concat user-emacs-directory "init")))
-  (add-to-list 'load-path (file-name-concat config-directory "company"))
-  (add-to-list 'load-path (file-name-concat config-directory "conf-mode"))
-  (add-to-list 'load-path (file-name-concat config-directory "dired"))
-  (add-to-list 'load-path (file-name-concat config-directory "display-buffer"))
-  (add-to-list 'load-path (file-name-concat config-directory "ediff"))
-  (add-to-list 'load-path (file-name-concat config-directory "eglot"))
-  (add-to-list 'load-path (file-name-concat config-directory "eldoc"))
-  (add-to-list 'load-path (file-name-concat config-directory "electric"))
-  (add-to-list 'load-path (file-name-concat config-directory "flycheck"))
-  (add-to-list 'load-path (file-name-concat config-directory "flymake"))
-  (add-to-list 'load-path (file-name-concat config-directory "garbage-collection"))
-  (add-to-list 'load-path (file-name-concat config-directory "ibuffer"))
-  (add-to-list 'load-path (file-name-concat config-directory "keys"))
-  (add-to-list 'load-path (file-name-concat config-directory "man"))
-  (add-to-list 'load-path (file-name-concat config-directory "mode-line"))
-  (add-to-list 'load-path (file-name-concat config-directory "lsp-mode"))
-  (add-to-list 'load-path (file-name-concat config-directory "native-comp"))
-  (add-to-list 'load-path (file-name-concat config-directory "package"))
-  (add-to-list 'load-path (file-name-concat config-directory "prog-mode"))
-  (add-to-list 'load-path (file-name-concat config-directory "project"))
-  (add-to-list 'load-path (file-name-concat config-directory "recentf"))
-  (add-to-list 'load-path (file-name-concat config-directory "savehist"))
-  (add-to-list 'load-path (file-name-concat config-directory "text-mode"))
-  (add-to-list 'load-path (file-name-concat config-directory "tramp")))
+(when (locate-library "site-gentoo")
+  (require 'site-gentoo))
 
 (require 'init-text-mode)
 (require 'init-conf-mode)
@@ -81,10 +67,13 @@
 (when (and (> emacs-major-version 28) (native-comp-available-p))
   (require 'init-native-comp))
 
-(let ((local-lisp-directory (file-name-concat user-emacs-directory "lisp")))
-  (add-to-list 'load-path (file-name-concat local-lisp-directory "man-completion")))
-
 (require 'man-completion)
+
+(when (file-exists-p (file-name-concat custom-theme-directory "custom-wombat-theme.el"))
+  (load-theme 'custom-wombat t))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (cua-mode 1)
 (save-place-mode 1)
