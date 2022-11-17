@@ -2,7 +2,6 @@
 (require 'ibuf-ext)
 (require 'init-ibuffer-human-readable-size)
 (require 'init-ibuffer-never-show)
-(require 'init-ibuffer-filter-groups)
 
 (setq ibuffer-display-summary nil
       ibuffer-expert t)
