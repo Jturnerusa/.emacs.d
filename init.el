@@ -12,7 +12,6 @@
       tab-width 4)
 
 (setq-default display-fill-column-indicator-column 120
-              mode-line-format (list "%b (%m)")
               indent-tabs-mode nil)
 
 (when (file-exists-p (file-name-concat custom-theme-directory "custom-wombat-theme.el"))
@@ -36,6 +35,7 @@
   (add-to-list 'load-path (file-name-concat config-directory "ibuffer"))
   (add-to-list 'load-path (file-name-concat config-directory "keys"))
   (add-to-list 'load-path (file-name-concat config-directory "man"))
+  (add-to-list 'load-path (file-name-concat config-directory "mode-line"))
   (add-to-list 'load-path (file-name-concat config-directory "lsp-mode"))
   (add-to-list 'load-path (file-name-concat config-directory "native-comp"))
   (add-to-list 'load-path (file-name-concat config-directory "package"))
@@ -59,6 +59,7 @@
 (require 'init-ibuffer)
 (require 'init-keys)
 (require 'init-man)
+(require 'init-mode-line)
 (require 'init-package)
 (require 'init-project)
 (require 'init-recentf)
