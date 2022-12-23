@@ -35,6 +35,7 @@
 (require 'init-text-mode)
 (require 'init-conf-mode)
 (require 'init-prog-mode)
+(require 'init-compile)
 (require 'init-dired)
 (require 'init-display-buffer)
 (require 'init-ediff)
