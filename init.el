@@ -7,8 +7,10 @@
       custom-file (file-name-concat user-emacs-directory "custom.el")
       custom-theme-directory (file-name-concat user-emacs-directory "themes/")
       debugger 'edebug
+      inferior-lisp-program "sbcl"
       inhibit-splash-screen t
       make-backup-files nil
+      scheme-program-name "guile"
       tab-width 4)
 
 (setq-default display-fill-column-indicator-column 120
