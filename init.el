@@ -69,6 +69,9 @@
 (when (and (> emacs-major-version 28) (native-comp-available-p))
   (require 'init-native-comp))
 
+(when (require? 'pixel-scroll)
+  (require 'init-pixel-scroll))
+
 (require 'man-completion)
 
 
@@ -78,8 +81,6 @@
 (cua-mode 1)
 (save-place-mode 1)
 (show-paren-mode 1)
-(pixel-scroll-mode 1)
-(pixel-scroll-precision-mode 1)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
