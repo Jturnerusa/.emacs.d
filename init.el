@@ -43,6 +43,7 @@
 (require 'init-flymake)
 (require 'init-garbage-collection)
 (require 'init-ibuffer)
+(require 'init-ielm)
 (require 'init-keys)
 (require 'init-man)
 (require 'init-mode-line)
