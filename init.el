@@ -29,8 +29,12 @@
           (add-to-list 'load-path directory))
         directories))
 
-(when (locate-library "site-gentoo")
-  (require 'site-gentoo))
+(defmacro require? (feature)
+  `(require ,feature nil t))
+
+(require? 'site-gentoo)
+
+(require? 'magit)
 
 (require 'init-text-mode)
 (require 'init-conf-mode)
@@ -54,16 +58,16 @@
 (require 'init-savehist)
 (require 'init-tramp)
 
-(when (locate-library "company")
+(when (require? 'company)
   (require 'init-company))
 
-(when (locate-library "eglot")
+(when (require? 'eglot)
   (require 'init-eglot))
 
-(when (locate-library "flycheck")
+(when (require? 'flycheck)
   (require 'init-flycheck))
 
-(when (locate-library "lsp-mode")
+(when (require? 'lsp-mode)
   (require 'init-lsp-mode))
 
 (when (and (> emacs-major-version 28) (native-comp-available-p))
