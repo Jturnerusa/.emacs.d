@@ -69,8 +69,6 @@
 
 (require 'man-completion)
 
-(when (file-exists-p (file-name-concat custom-theme-directory "custom-wombat-theme.el"))
-  (load-theme 'custom-wombat t))
 
 (when (file-exists-p custom-file)
   (load custom-file))
@@ -84,3 +82,6 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 (tooltip-mode 0)
+
+(load-theme 'wombat)
+(load-theme 'badger t)
