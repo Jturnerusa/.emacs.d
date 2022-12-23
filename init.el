@@ -6,6 +6,7 @@
       custom-buffer-indent 4
       custom-file (file-name-concat user-emacs-directory "custom.el")
       custom-theme-directory (file-name-concat user-emacs-directory "themes/")
+      debugger 'edebug
       inhibit-splash-screen t
       make-backup-files nil
       tab-width 4)
