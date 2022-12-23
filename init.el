@@ -74,6 +74,7 @@
 
 (require 'man-completion)
 
+(require 'license-boilerplate)
 
 (when (file-exists-p custom-file)
   (load custom-file))
