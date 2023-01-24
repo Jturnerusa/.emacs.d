@@ -80,6 +80,8 @@
 (when (require? 'pixel-scroll)
   (require 'init-pixel-scroll))
 
+(when (and (require? 'treesit) (treesit-available-p))
+  (require 'init-treesit))
 (require 'man-completion)
 
 (require 'license-boilerplate)
