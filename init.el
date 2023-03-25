@@ -65,9 +65,6 @@
 (when (require? 'company)
   (require 'init-company))
 
-(when (require? 'eglot)
-  (require 'init-eglot))
-
 (when (require? 'flycheck)
   (require 'init-flycheck))
 
