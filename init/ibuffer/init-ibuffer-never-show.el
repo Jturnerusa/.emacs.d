@@ -1,7 +1,5 @@
-(defvar init-ibuffer-never-show '("^\\*Messages\\*$"
-                                    "^\\*Help\\*$"
-                                    "^\\*Completions\\*$"
-                                    "^\\*Backtrace\\*$"
+(defvar init-ibuffer-never-show '("^\\*Messages\\*$"                                    
+                                    "^\\*Completions\\*$"                                    
                                     "^\\*Async-native-compile-log\\*$"
                                     "^\\*Native-compile-Log\\*$"
                                     "^\\*Warnings\\*$"))
