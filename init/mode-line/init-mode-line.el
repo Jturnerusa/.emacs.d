@@ -6,6 +6,11 @@
                                  " "
                                  "(" mode-name ")"
                                  " "
-                                 "[" (:eval (abbreviate-file-name default-directory)) "]"))
+                                 "[" (:eval (abbreviate-file-name default-directory)) "]"
+                                 " "
+                                 "(" (:eval (if server-process
+                                                (process-name server-process)
+                                              "none"))
+                                 ")"))
 
 (provide 'init-mode-line)
