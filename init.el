@@ -47,6 +47,8 @@
 
 (require 'license-boilerplate)
 
+(require 'toggle-local-vars)
+
 (when (file-exists-p custom-file)
   (load custom-file))
 
