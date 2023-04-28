@@ -37,6 +37,9 @@
 (when (require? 'lsp-mode)
   (require 'init-lsp-mode))
 
+(when (require? 'eglot)
+  (require 'init-eglot))
+
 (when (require? 'pixel-scroll)
   (require 'init-pixel-scroll))
 
