@@ -5,6 +5,13 @@
       custom-file (file-name-concat user-emacs-directory "custom.el")
       custom-theme-directory (file-name-concat user-emacs-directory "themes/")
       debugger 'edebug
+      initial-buffer-choice (lambda ()
+                       (let ((initial-file (file-name-concat
+                                            user-emacs-directory
+                                            "initial-buffer")))
+                         (if (file-exists-p initial-file)
+                             (find-file initial-file)
+                           (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
       inferior-lisp-program "sbcl"
       inhibit-splash-screen t
