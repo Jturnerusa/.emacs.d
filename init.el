@@ -52,6 +52,8 @@
 
 (require 'toggle-local-vars)
 
+(require 'reload-library)
+
 (when (file-exists-p custom-file)
   (load custom-file))
 
