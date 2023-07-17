@@ -70,7 +70,7 @@
 (show-paren-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
-(when (and (featurep 'pixel-scroll) (display-graphic-p))
+(when (featurep 'pixel-scroll)
   (pixel-scroll-mode 1))
 
 (menu-bar-mode 0)
