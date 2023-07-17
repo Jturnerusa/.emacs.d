@@ -24,4 +24,4 @@
   :load-path (lambda () (locate-user-emacs-file "lisp/reload-library")))
 
 (use-package toggle-local-vars
-  :load-path (lambda () (locate-user-emacs-file "lisp/toggle-local/vars")))
+  :load-path (lambda () (locate-user-emacs-file "lisp/toggle-local-vars")))
