@@ -56,9 +56,6 @@
                                               "_"))
                                  ")"))
 
-(when (file-exists-p custom-file)
-  (load-file custom-file))
-
 (load-file (locate-user-emacs-file "lisp/packages.el"))
 
 (cl-loop with packages-directory = (file-name-concat user-emacs-directory "packages")
