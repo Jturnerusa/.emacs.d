@@ -80,3 +80,9 @@
 
 (load-theme 'wombat)
 (load-theme 'badger t)
+
+(set-face-attribute
+ 'default nil
+ :family "Noto Sans Mono"
+ :foundry "GOOG"
+ :slant 'normal)
