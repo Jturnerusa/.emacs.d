@@ -1,9 +1,9 @@
+(require 'site-gentoo)
 (require 'use-package)
 (require 'cl-lib)
 (require 'seq)
 (require 'server)
 (require 'edebug)
-(require 'site-gentoo)
 
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
