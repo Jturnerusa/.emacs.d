@@ -40,7 +40,8 @@
       use-package-always-demand t
       use-package-ensure-function 'ignore)
 
-(setq-default display-fill-column-indicator-column 120
+(setq-default create-lockfiles nil
+              display-fill-column-indicator-column 120
               indent-tabs-mode nil)
 
 (setq-default mode-line-format '("%*"
