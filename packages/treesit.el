@@ -5,8 +5,11 @@
   ((rx (literal ".") "py" eos) . python-ts-mode)
   ((rx (literal ".") "sh" eos) . bash-ts-mode)
   :interpreter
-  (("python" "python3" "python2") . python-ts-mode)
-  (("bash" "sh" "openrc-run") . bash-ts-mode))
+  ("python" . python-ts-mode)
+  ("python3" . python-ts-mode)
+  ("bash" . bash-ts-mode)
+  ("sh" . bash-ts-mode)
+  ("openrc-run" . bash-ts-mode))
 
 (use-package rust-ts-mode
     :requires treesit
