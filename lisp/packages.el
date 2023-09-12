@@ -25,3 +25,9 @@
 
 (use-package toggle-local-vars
   :load-path (lambda () (locate-user-emacs-file "lisp/toggle-local-vars")))
+
+(use-package license-boilerplate
+  :load-path (lambda () (locate-user-emacs-file "lisp/license-boilerplate")))
+
+(use-package best-side-window
+  :load-path (lambda () (locate-user-emacs-file "lisp/best-side-window")))
