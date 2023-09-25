@@ -1,16 +1,24 @@
 (use-package treesit
   :if (ignore-errors (treesit-available-p))
-  :mode
-  ((rx (literal ".") "rs" eos) . rust-ts-mode)
-  ((rx (literal ".") "py" eos) . python-ts-mode)
-  ((rx (literal ".") "sh" eos) . bash-ts-mode)
-  :interpreter
-  ("python" . python-ts-mode)
-  ("python3" . python-ts-mode)
-  ("bash" . bash-ts-mode)
-  ("sh" . bash-ts-mode)
-  ("openrc-run" . bash-ts-mode))
-
+  :config
+  (let ((setup-treesit-mode (lambda (parser treesit-mode modes &optional interpreters)
+                              (if (not (treesit-language-available-p parser))
+                                  (error "treesit language parser not available for %s" (symbol-name language))
+                                (seq-each (lambda (mode)
+                                            (add-to-list 'auto-mode-alist
+                                                         (cons (rx (literal ".")
+                                                                   (literal mode) eos)
+                                                               treesit-mode)))
+                                          modes)
+                                (seq-each (lambda (interpreter)
+                                            (add-to-list 'interpreter-mode-alist
+                                                         (cons interpreter treesit-mode)))
+                                          interpreters)))))
+    (funcall setup-treesit-mode 'python 'python-ts-mode  '("py")  '("python" "python3"))
+    (funcall setup-treesit-mode 'bash 'bash-ts-mode '("sh")  '("bash" "sh" "openrc-run"))
+    (funcall setup-treesit-mode 'rust 'rust-ts-mode '("rs"))
+    (funcall setup-treesit-mode 'cpp 'c++-ts-mode '("cpp" "cxx" "c++" "hpp" "hxx" "h++"))))
+  
 (use-package rust-ts-mode
     :requires treesit
     :hook
