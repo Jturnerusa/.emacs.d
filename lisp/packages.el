@@ -33,3 +33,6 @@
 
 (use-package best-side-window
   :load-path (lambda () (locate-user-emacs-file "lisp/best-side-window")))
+
+(use-package clang-format
+  :load-path (lambda () (locate-user-emacs-file "lisp/clang-format")))
