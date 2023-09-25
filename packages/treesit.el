@@ -20,10 +20,16 @@
     (funcall setup-treesit-mode 'cpp 'c++-ts-mode '("cpp" "cxx" "c++" "hpp" "hxx" "h++"))))
   
 (use-package rust-ts-mode
-    :requires treesit
-    :hook
-    (rust-ts-mode . (lambda ()
-                      (when (require 'rust-mode nil t)
-                        (add-hook 'before-save-hook 'rust-before-save-method nil t)
-                        (add-hook 'after-save-hook 'rust-after-save-method nil t)
-                        (use-local-map (make-composed-keymap (list rust-ts-mode-map rust-mode-map)))))))
+  :requires treesit
+  :hook
+  (rust-ts-mode . (lambda ()
+                    (when (require 'rust-mode nil t)
+                      (add-hook 'before-save-hook 'rust-before-save-method nil t)
+                      (add-hook 'after-save-hook 'rust-after-save-method nil t)
+                      (use-local-map (make-composed-keymap (list rust-ts-mode-map rust-mode-map)))))))
+
+(use-package c-ts-mode
+  :requires treesit
+  :custom
+  (c-ts-mode-indent-style 'linux)
+  (c-ts-mode-indent-offset 2))
