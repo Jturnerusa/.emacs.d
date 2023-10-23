@@ -38,7 +38,8 @@
       tab-width 4
       temporary-file-directory (file-name-concat (or (getenv "TMPDIR") "/tmp") ".emacs")
       use-package-always-demand t
-      use-package-ensure-function 'ignore)
+      use-package-ensure-function 'ignore
+      user-full-name "John Turner")
 
 (setq-default create-lockfiles nil
               display-fill-column-indicator-column 120
