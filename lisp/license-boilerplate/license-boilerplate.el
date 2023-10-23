@@ -1,8 +1,7 @@
 (defgroup license-boilerplate nil
   "A small script for inserting license boilerplate text into source files.")
 
-(defcustom license-boilerplate-copyright-author
-  nil
+(defcustom license-boilerplate-copyright-author user-full-name
   "The value to insert into the Copyright line."
   :group 'license-boilerplate
   :type 'string)
