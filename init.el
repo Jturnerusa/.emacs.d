@@ -4,6 +4,7 @@
 (require 'seq)
 (require 'server)
 (require 'edebug)
+(require 'xdg)
 
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
