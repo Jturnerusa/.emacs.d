@@ -80,6 +80,7 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 (tooltip-mode 0)
+(auto-save-mode 0)
 
 (load-theme 'wombat)
 (load-theme 'badger t)
