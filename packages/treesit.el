@@ -3,7 +3,8 @@
   :config
   (let ((setup-treesit-mode (lambda (parser treesit-mode modes &optional interpreters)
                               (if (not (treesit-language-available-p parser))
-                                  (error "treesit language parser not available for %s" (symbol-name language))
+                                  (message "treesit language parser not available for %s"
+                                           (symbol-name language))
                                 (seq-each (lambda (mode)
                                             (add-to-list 'auto-mode-alist
                                                          (cons (rx (literal ".")
