@@ -1,6 +1,8 @@
 (use-package flycheck
   :hook
   (flycheck-error-list-mode . visual-line-mode)
+  :custom
+  (flycheck-python-mypy-cache-dir (file-name-concat (getenv "HOME") ".cache" "mypy"))
   :config
   (when (require 'best-side-window nil t)
     (add-to-list 'display-buffer-alist '((major-mode . flycheck-error-list-mode)
