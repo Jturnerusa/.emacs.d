@@ -36,3 +36,6 @@
 
 (use-package fmt
   :load-path (lambda () (locate-user-emacs-file "lisp/fmt")))
+
+(use-package flycheck-nasm
+  :load-path (lambda () (locate-user-emacs-file "lisp/flycheck-nasm")))
