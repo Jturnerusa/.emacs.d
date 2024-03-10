@@ -32,45 +32,49 @@
   :type '(repeat string)
   :group 'fmt)
 
-(defun fmt--init-output-buffer (name)
-  (with-current-buffer (get-buffer-create name)
-    (erase-buffer)
-    (current-buffer)))
+(defcustom fmt-stdout-buffer "*fmt stdout*"
+  "Buffer to send fmt-executable stdout to."
+  :type '(string)
+  :group 'fmt)
 
-(defun fmt--wait-for-processes (processes)
-  (cl-loop for process in processes
-           do (cl-loop while (accept-process-output process))))
+(defcustom fmt-stderr-buffer "*fmt stderr*"
+  "Buffer to send fmt-executable stderr to."
+  :type '(string)
+  :group 'fmt)
 
-(defun fmt-process-current-buffer ()
-  (let* ((stdout-buffer (fmt--init-output-buffer "*fmt stdout*"))
-         (stderr-buffer (fmt--init-output-buffer "*fmt stderr*"))
-         (stderr (make-pipe-process
-                  :name (format "%s stderr" fmt-executable)
-                  :buffer stderr-buffer
-                  :sentinel 'ignore
-                  :noquery t))
-         (process (make-process
-                   :name fmt-executable
-                   :buffer stdout-buffer
-                   :command (cons fmt-executable fmt-args)
-                   :sentinel 'ignore
-                   :noquery t
-                   :connection-type 'pipe
-                   :stderr stderr)))
-    (process-send-region process (point-min) (point-max))
-    (process-send-eof process)
-    (cons process stderr)))
+(defcustom fmt-before-format-hook nil
+  "Hooks to run before fmt-executable runs."
+  :type '(hook)
+  :group 'fmt)
+
+(define-error 'fmt-failure "fmt-failure")
+
+(defun fmt-buffer ()
+  (run-hooks 'fmt-before-format-hook)
+  (let ((exit-status (apply 'call-process-region `(,(point-min) ,(point-max) ,fmt-executable
+                                                   nil ,(list fmt-stdout-buffer fmt-stderr-buffer)
+                                                   nil ,@fmt-args))))
+    (if (zerop exit-status)
+        (replace-buffer-contents fmt-stdout-buffer)
+      (signal 'fmt-failure nil))))
 
 (defun fmt-current-buffer ()
   (interactive)
-  (pcase-let ((`(,process . ,stderr) (fmt-process-current-buffer)))
-    (fmt--wait-for-processes (list process stderr))
-    (if (zerop (process-exit-status process))
-        (replace-buffer-contents (process-buffer process))
-      (message "%s failed with exit status %s. See %s for output."
-               fmt-executable
-               (process-exit-status process)
-               (process-buffer stderr)))))
+  (condition-case _ (fmt-buffer)
+    ('fmt-failure (message "%s failed, see %s for more details" fmt-executable fmt-stderr-buffer))))
+
+;; hooks
+
+(defun fmt-erase-stdout-buffer ()
+  (with-current-buffer (get-buffer-create fmt-stdout-buffer)
+    (erase-buffer)))
+
+(defun fmt-erase-stderr-buffer ()
+  (with-current-buffer (get-buffer-create fmt-stderr-buffer)
+    (erase-buffer)))
+
+(add-hook 'fmt-before-format-hook 'fmt-erase-stdout-buffer)
+(add-hook 'fmt-before-format-hook 'fmt-erase-stderr-buffer)
 
 (provide 'fmt)
 ;;; fmt.el ends here
