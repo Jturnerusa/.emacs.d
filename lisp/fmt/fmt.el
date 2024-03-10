@@ -37,7 +37,7 @@
   :type '(string)
   :group 'fmt)
 
-(defcustom fmt-stderr-buffer "*fmt stderr*"
+(defcustom fmt-stderr-file "/dev/null"
   "Buffer to send fmt-executable stderr to."
   :type '(string)
   :group 'fmt)
@@ -52,7 +52,7 @@
 (defun fmt-buffer ()
   (run-hooks 'fmt-before-format-hook)
   (let ((exit-status (apply 'call-process-region `(,(point-min) ,(point-max) ,fmt-executable
-                                                   nil ,(list fmt-stdout-buffer fmt-stderr-buffer)
+                                                   nil ,(list fmt-stdout-buffer fmt-stderr-file)
                                                    nil ,@fmt-args))))
     (if (zerop exit-status)
         (replace-buffer-contents fmt-stdout-buffer)
