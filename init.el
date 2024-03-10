@@ -33,6 +33,7 @@
                                     (find-file initial-file)
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
+      gc-cons-threshold (* 8 (expt 1024 2))
       inhibit-splash-screen t
       make-backup-files nil
       mouse-wheel-progressive-speed nil
