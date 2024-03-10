@@ -41,7 +41,8 @@
       temporary-file-directory (file-name-concat (or (getenv "TMPDIR") "/tmp") ".emacs")
       use-package-always-demand t
       use-package-ensure-function 'ignore
-      user-full-name "John Turner")
+      user-full-name "John Turner"
+      user-mail-address "jturner.usa@gmail.com")
 
 (setq-default create-lockfiles nil
               display-fill-column-indicator-column 120
