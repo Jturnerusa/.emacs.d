@@ -21,7 +21,7 @@
       auto-save-default nil
       change-major-mode-with-file-name nil
       custom-buffer-indent 4
-      custom-file (file-name-concat user-emacs-directory "custom.el")
+      custom-file "/dev/null"
       custom-theme-directory (file-name-concat user-emacs-directory "themes/")
       debugger 'edebug
       display-buffer-base-action '(display-buffer-same-window display-buffer-reuse-window)
