@@ -61,7 +61,7 @@
 (defun fmt-current-buffer ()
   (interactive)
   (condition-case _ (fmt-buffer)
-    ('fmt-failure (message "%s failed, see %s for more details" fmt-executable fmt-stderr-buffer))))
+    ('fmt-failure (message "%s failed, see %s for more details" fmt-executable fmt-stderr-file))))
 
 ;; hooks
 
@@ -69,12 +69,7 @@
   (with-current-buffer (get-buffer-create fmt-stdout-buffer)
     (erase-buffer)))
 
-(defun fmt-erase-stderr-buffer ()
-  (with-current-buffer (get-buffer-create fmt-stderr-buffer)
-    (erase-buffer)))
-
 (add-hook 'fmt-before-format-hook 'fmt-erase-stdout-buffer)
-(add-hook 'fmt-before-format-hook 'fmt-erase-stderr-buffer)
 
 (provide 'fmt)
 ;;; fmt.el ends here
