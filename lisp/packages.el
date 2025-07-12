@@ -39,3 +39,6 @@
 
 (use-package flycheck-nasm
   :load-path (lambda () (locate-user-emacs-file "lisp/flycheck-nasm")))
+
+(use-package wgetpaste
+  :load-path (lambda () (locate-user-emacs-file "lisp/wgetpaste")))
