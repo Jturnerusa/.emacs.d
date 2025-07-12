@@ -92,3 +92,5 @@
  :family "Noto Sans Mono"
  :foundry "GOOG"
  :slant 'normal)
+
+(add-hook 'focus-out-hook 'garbage-collect)
