@@ -42,3 +42,6 @@
 
 (use-package wgetpaste
   :load-path (lambda () (locate-user-emacs-file "lisp/wgetpaste")))
+
+(use-package cil-mode
+  :load-path (lambda () (locate-user-emacs-file "lisp/cil-mode")))
