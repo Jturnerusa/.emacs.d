@@ -24,12 +24,19 @@
 
 (put 'block 'lisp-indent-function 4)
 
+(defcustom cil-mode-indent-width 4
+  "Amount of spaces to indent expressions with.")
+
+(defun cil-mode--indent-function (_ _)
+  (* cil-mode-indent-width (car (syntax-ppss))))
+
 (defvar cil-mode--font-lock-defaults
   `((,(rx (group (or "in" "block" "macro")) eow)
      0 font-lock-keyword-face)))
 
 (define-derived-mode cil-mode lisp-data-mode "cil"
-  (setq-local font-lock-defaults cil-mode--font-lock-defaults))
+  (setq-local font-lock-defaults cil-mode--font-lock-defaults)
+  (setq-local lisp-indent-function 'cil-mode--indent-function))
 
 (add-to-list 'auto-mode-alist '("\\.cil\\'" . cil-mode))
 
