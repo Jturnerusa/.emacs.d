@@ -1,4 +1,4 @@
-(require 'site-gentoo)
+(require 'site-gentoo nil t)
 (require 'use-package)
 (require 'cl-lib)
 (require 'seq)
