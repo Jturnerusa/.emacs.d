@@ -26,6 +26,7 @@
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
       gc-cons-threshold (* 8 (expt 1024 2))
+      read-process-output-max (* 1024 1024)
       inhibit-splash-screen t
       make-backup-files nil
       mouse-wheel-progressive-speed nil
