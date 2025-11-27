@@ -26,7 +26,10 @@
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
       gc-cons-threshold (* 8 (expt 1024 2))
-      read-process-output-max (* 1024 1024)
+      read-process-output-max (string-to-number
+                               (with-temp-buffer
+                                 (insert-file-contents "/proc/sys/fs/pipe-max-size")
+                                 (buffer-string)))
       inhibit-splash-screen t
       make-backup-files nil
       mouse-wheel-progressive-speed nil
