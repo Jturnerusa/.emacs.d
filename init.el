@@ -7,7 +7,9 @@
 (require 'xdg)
 
 (global-set-key   (kbd "C-x k")     'kill-current-buffer)
-(global-set-key   (kbd "C-x C-b")   'ibuffer)
+(global-set-key   (kbd "C-x C-b")   (lambda (arg)
+                                      (interactive "P")
+                                      (with-persp-buffer-list () (ibuffer arg))))
 
 (setq auth-source-save-behavior nil
       auto-save-default nil
@@ -25,7 +27,7 @@
                                     (find-file initial-file)
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
-      gc-cons-threshold (* 8 (expt 1024 2))
+      gc-cons-threshold (* 128 (expt 1024 2))
       read-process-output-max (string-to-number
                                (with-temp-buffer
                                  (insert-file-contents "/proc/sys/fs/pipe-max-size")
@@ -55,7 +57,9 @@
                                  "(" (:eval (if server-process
                                                 (process-name server-process)
                                               "_"))
-                                 ")"))
+                                 ")"
+                                 " "
+                                 "(" persp-last-persp-name ")"))
 
 (load-file (locate-user-emacs-file "lisp/packages.el"))
 
@@ -86,6 +90,9 @@
 (tooltip-mode 0)
 (auto-save-mode 0)
 
+(when (require 'persp-mode nil t)
+  (persp-mode))
+
 (load-theme 'wombat)
 (load-theme 'badger t)
 
@@ -96,3 +103,4 @@
  :slant 'normal)
 
 (add-hook 'focus-out-hook 'garbage-collect)
+(add-hook 'before-save-hook 'garbage-collect)
