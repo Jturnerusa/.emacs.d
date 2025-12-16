@@ -4,6 +4,7 @@
   (prog-mode . display-line-numbers-mode)
   (prog-mode . electric-pair-mode)
   (prog-mode . electric-indent-mode)
+  (prog-mode . prettify-symbols-mode)
   (prog-mode . (lambda ()
                  (when (featurep 'highlight-indentation)
                    (highlight-indentation-mode 1)))))
