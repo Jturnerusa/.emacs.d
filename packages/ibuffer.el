@@ -1,12 +1,17 @@
 (use-package ibuffer
   :requires 'persp-mode
   :config
-  (define-ibuffer-column persp
-    (:name "persp")
-    (lambda (_)
-      (if (featurep 'persp-mode)
-          persp-last-persp-name
-        "persp not available")))
+  (when (require 'persp-mode nil t)
+    
+    (define-ibuffer-column persp
+      (:name "persp")
+      (lambda (_)
+        persp-last-persp-name))
+
+    (define-key ibuffer-mode-map "g"
+                (lambda (arg)
+                  (interactive "P")
+                  (with-persp-buffer-list () (ibuffer-update arg)))))
   :custom
   (ibuffer-display-summary nil)
   (ibuffer-expert t)
