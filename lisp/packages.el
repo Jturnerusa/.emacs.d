@@ -45,3 +45,6 @@
 
 (use-package cil-mode
   :load-path (lambda () (locate-user-emacs-file "lisp/cil-mode")))
+
+(use-package screenshot
+  :load-path (lambda () (locate-user-emacs-file "lisp/screenshot")))
