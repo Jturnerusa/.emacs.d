@@ -27,7 +27,6 @@
                                     (find-file initial-file)
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
-      gc-cons-threshold (* 128 (expt 1024 2))
       read-process-output-max (string-to-number
                                (with-temp-buffer
                                  (insert-file-contents "/proc/sys/fs/pipe-max-size")
