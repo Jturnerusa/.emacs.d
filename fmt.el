@@ -37,39 +37,39 @@
   :type '(string)
   :group 'fmt)
 
-(defcustom fmt-stderr-file "/dev/null"
+(defcustom fmt-stderr-buffer "*fmt stderr*"
   "Buffer to send fmt-executable stderr to."
   :type '(string)
   :group 'fmt)
 
-(defcustom fmt-before-format-hook nil
-  "Hooks to run before fmt-executable runs."
-  :type '(hook)
-  :group 'fmt)
-
-(define-error 'fmt-failure "fmt-failure")
-
-(defun fmt-buffer ()
-  (run-hooks 'fmt-before-format-hook)
-  (let ((exit-status (apply 'call-process-region `(,(point-min) ,(point-max) ,fmt-executable
-                                                   nil ,(list fmt-stdout-buffer fmt-stderr-file)
-                                                   nil ,@fmt-args))))
-    (if (zerop exit-status)
-        (replace-buffer-contents fmt-stdout-buffer)
-      (signal 'fmt-failure nil))))
-
 (defun fmt-current-buffer ()
   (interactive)
-  (condition-case _ (fmt-buffer)
-    ('fmt-failure (message "%s failed, see %s for more details" fmt-executable fmt-stderr-file))))
 
-;; hooks
+  (unless (executable-find fmt-executable t)
+    (error "failed to find fmt-executable: %s" fmt-executable))
+  
+  (let ((stdout (get-buffer-create fmt-stdout-buffer))
+        (stderr (get-buffer-create fmt-stderr-buffer)))
 
-(defun fmt-erase-stdout-buffer ()
-  (with-current-buffer (get-buffer-create fmt-stdout-buffer)
-    (erase-buffer)))
+    (with-current-buffer stdout
+      (erase-buffer))
 
-(add-hook 'fmt-before-format-hook 'fmt-erase-stdout-buffer)
+    (let ((proc (make-process
+                 :name (format "*%s*" fmt-executable)
+                 :command `(,fmt-executable ,@fmt-args)
+                 :buffer stdout
+                 :stderr stderr
+                 :file-handler t)))
 
+      (process-send-region proc (point-min) (point-max))
+      (process-send-eof proc)
+
+      (while (process-live-p proc)
+        (accept-process-output proc))
+      
+      (if (zerop (process-exit-status proc))
+          (replace-buffer-contents stdout)
+        (error "failed to run formatter")))))
+        
 (provide 'fmt)
 ;;; fmt.el ends here
