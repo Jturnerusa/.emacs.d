@@ -48,3 +48,6 @@
 
 (use-package screenshot
   :load-path (lambda () (locate-user-emacs-file "lisp/screenshot")))
+
+(use-package flymake-mypy
+  :load-path (lambda () (locate-user-emacs-file "lisp/flymake-mypy")))
