@@ -51,3 +51,6 @@
 
 (use-package flymake-mypy
   :load-path (lambda () (locate-user-emacs-file "lisp/flymake-mypy")))
+
+(use-package flymake-flake8
+  :load-path (lambda () (locate-user-emacs-file "lisp/flymake-flake8")))
