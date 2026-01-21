@@ -31,10 +31,12 @@
                                     (find-file initial-file)
                                   (get-buffer-create "*scratch*"))))
       enable-local-variables :safe
-      read-process-output-max (string-to-number
-                               (with-temp-buffer
-                                 (insert-file-contents "/proc/sys/fs/pipe-max-size")
-                                 (buffer-string)))
+      read-process-output-max (or (ignore-errors
+				    (string-to-number
+				     (with-temp-buffer
+                                       (insert-file-contents "/proc/sys/fs/pipe-max-size")
+                                       (buffer-string))))
+				  (expt 1024 2))
       inhibit-splash-screen t
       make-backup-files nil
       mouse-wheel-progressive-speed nil
