@@ -21,6 +21,7 @@
 
 (use-package c-ts-mode
   :requires treesit
+  :if (ignore-errors (treesit-language-available-p 'c))
   :custom
   (c-ts-mode-indent-style 'linux)
   (c-ts-mode-indent-offset 2))
