@@ -7,9 +7,13 @@
 (require 'xdg)
 
 (global-set-key   (kbd "C-x k")     'kill-current-buffer)
-(global-set-key   (kbd "C-x C-b")   (lambda (arg)
-                                      (interactive "P")
-                                      (with-persp-buffer-list () (ibuffer arg))))
+(global-set-key   (kbd "C-x C-b")
+                  (lambda (arg)
+                    (interactive "P")
+                    (if (require 'persp nil t)
+                        (with-persp-buffer-list
+                         () (ibuffer arg))
+                      (ibuffer))))
 
 (setq auth-source-save-behavior nil
       auto-save-default nil
