@@ -1,4 +1,5 @@
 (use-package flycheck
+  :ensure t
   :hook
   (flycheck-error-list-mode . visual-line-mode)
   :custom

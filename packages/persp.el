@@ -1,4 +1,5 @@
 (use-package persp-mode
+  :ensure t
   :custom
   (persp-add-buffer-on-after-change-major-mode t)
   (persp-save-dir (file-name-concat
