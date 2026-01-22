@@ -2,7 +2,7 @@
   :if (ignore-errors (treesit-available-p))
   :config
   (let ((setup-treesit-mode (lambda (parser treesit-mode modes &optional interpreters)
-                              (if (not (treesit-language-available-p parser))
+                              (if (not (treesit-language-available-p language))
                                   (message "treesit language parser not available for %s"
                                            (symbol-name language))
                                 (seq-each (lambda (mode)
